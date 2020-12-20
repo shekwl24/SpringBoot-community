@@ -4,6 +4,8 @@ package com.moon.blog.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,7 +30,14 @@ public class BoardService {
 		boardRepository.save(board);
 	}
 	
-	public List<Board> 글목록() {
-		return boardRepository.findAll();
+	public Page<Board> 글목록(Pageable pageable) {
+		return boardRepository.findAll(pageable);
+	}
+	
+	public Board 글상세보기(int id) {
+		return boardRepository.findById(id)
+				.orElseThrow(()-> {
+					return new IllegalArgumentException("글 상세보기 실패 : 아이디를 찾을 수 없습니다.");
+				});
 	}
 }
