@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.moon.blog.auth.PrincipalDetail;
 import com.moon.blog.dto.ResponseDto;
 import com.moon.blog.model.Board;
+import com.moon.blog.model.Reply;
 import com.moon.blog.model.RoleType;
 import com.moon.blog.model.User;
 import com.moon.blog.service.BoardService;
@@ -40,6 +41,12 @@ public class BoardApiController {
 	@PutMapping("/api/board/{id}")
 	public ResponseDto<Integer> update(@PathVariable int id, @RequestBody Board board) {
 		boardService.글수정하기(id, board);
+		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+	}
+	
+	@PostMapping("/api/board/{boardId}/reply")
+	public ResponseDto<Integer> replySave(@PathVariable int boardId, @RequestBody Reply reply, @AuthenticationPrincipal PrincipalDetail principal) { 
+		boardService.댓글쓰기(principal.getUser(), boardId, reply);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}
 }
