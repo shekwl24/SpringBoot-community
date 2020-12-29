@@ -1,18 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
 <%@ include file="layout/header.jsp"%>
 
 <div class="container">
-
-	<c:forEach var="board" items="${boards.content}">
-		<div class="card m-2">
-			<div class="card-body">
-				<h4 class="card-title">${board.title}</h4>
-				<a href="/board/${board.id}" class="btn btn-primary">상세보기</a>
-			</div>
-		</div>
-	</c:forEach>
-
+	<table class="table table-hover">
+		<thead>
+		<tr align="center">
+			<th>번호</th>
+			<th>제목</th>
+			<th>작성자</th>
+			<th>날짜</th>
+			<th>조회수</th>
+		</tr>
+		</thead>
+		<tbody>
+		<c:forEach var="board" items="${boards.content}">
+			<tr>
+				<td align="center">${board.id}</td>
+				<td width=650px style="table-layout: fixed">
+					<a style="color: #000000" href="/board/${board.id}">${board.title} </a>
+					<a href="/board/${board.id}">
+						<span style="color: #25710A; font-weight:bold">[${board.replysCount}]</span>			
+					</a>
+				</td>
+				<td align="center">${board.user.username}</td>
+				<td align="center">${fn:substring(board.createDate,0,10)}</td>
+				<td align="center">${board.count}</td>
+			</tr>
+		</c:forEach>
+		</tbody>
+	</table>
+	
+	<a class="btn btn-primary float-right" href="/board/saveForm"">글쓰기</a>
+	<br />
+	<br />
+	<br />
 	<ul class="pagination justify-content-center">
 		<c:choose>
 			<c:when test="${boards.first}">

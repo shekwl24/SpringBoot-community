@@ -44,8 +44,13 @@ public class BoardService {
 		return boardRepository.findAll(pageable);
 	}
 	
-	@Transactional(readOnly = true)
+	@Transactional
 	public Board 글상세보기(int id) {
+		Board board = boardRepository.findById(id)
+				.orElseThrow(()-> {
+					return new IllegalArgumentException("글 상세보기 실패 : 아이디를 찾을 수 없습니다.");
+				});
+		board.setCount(board.getCount() + 1);
 		return boardRepository.findById(id)
 				.orElseThrow(()-> {
 					return new IllegalArgumentException("글 상세보기 실패 : 아이디를 찾을 수 없습니다.");
@@ -71,12 +76,22 @@ public class BoardService {
 	@Transactional
 	public void 댓글쓰기(ReplySaveRequestDto replySaveRequestDto) {
 		int result = replyRepository.mSave(replySaveRequestDto.getUserId(), replySaveRequestDto.getBoardId(), replySaveRequestDto.getContent());
-		System.out.println("BoardService : " + result);
+		Board board = boardRepository.findById(replySaveRequestDto.getBoardId())
+				.orElseThrow(()-> {
+					return new IllegalArgumentException("글 찾기 실패 : 아이디를 찾을 수 없습니다.");
+				}); // 영속화 완료
+		board.setReplysCount(board.getReplysCount() + 1);
 	}
 	
 	@Transactional
-	public void 댓글삭제(int replyId) {
+	public void 댓글삭제(int replyId,int BoardId) {
 		replyRepository.deleteById(replyId);
+		Board board = boardRepository.findById(BoardId)
+				.orElseThrow(()-> {
+					return new IllegalArgumentException("글 찾기 실패 : 아이디를 찾을 수 없습니다.");
+				}); // 영속화 완료
+		if(board.getReplysCount() > 0) board.setReplysCount(board.getReplysCount() - 1);
+		System.out.println("이거야이거" + board.getReplysCount());
 	}
 	
 }

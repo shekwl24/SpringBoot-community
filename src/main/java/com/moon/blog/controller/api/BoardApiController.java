@@ -54,8 +54,8 @@ public class BoardApiController {
 	}
 	
 	@DeleteMapping("/api/board/{boardId}/reply/{replyId}")
-	public ResponseDto<Integer> replyDelete(@PathVariable int replyId) {
-		boardService.댓글삭제(replyId);
+	public ResponseDto<Integer> replyDelete(@PathVariable int replyId, @PathVariable int boardId) {
+		boardService.댓글삭제(replyId, boardId);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}
 }

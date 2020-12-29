@@ -8,14 +8,15 @@
 		<a href="/board/${board.id}/updateForm" class="btn btn-warning">수정</a>
 		<button id="btn-delete" class="btn btn-danger">삭제</button>
 	</c:if>
-	<br /><br />
-	<div>
-		글 번호 : <span id="id"><i>${board.id} </i></span>
-		작성자 : <span><i>${board.user.username} </i></span>
-	</div>
-	<br />
+	<br /><br /><br />
 	<div>
 		<h3>${board.title}</h3>
+		<span style="display:none" id="id">${board.id}</span>
+		<span>${board.user.username} </span>
+		<span style="color: #ccc"> | </span>
+		<span>${fn:substring(board.createDate,0,16)} </span>
+		<span style="color: #ccc"> | </span>
+		<span>조회 ${board.count}</span>
 	</div>
 
 	<hr />
