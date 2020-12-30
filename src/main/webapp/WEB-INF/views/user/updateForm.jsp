@@ -16,7 +16,7 @@
 		</div>
 		
 		<div class="form-group">
-			<label for="email">Email</label> 
+			<label for="email">Change Email</label> 
 			<input type="email" value="${principal.user.email}"class="form-control" placeholder="Enter email" id="email">
 		</div>
 		
