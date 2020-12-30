@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,9 +19,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.data.domain.Sort;
 
+import com.moon.blog.model.Board;
 import com.moon.blog.model.RoleType;
 import com.moon.blog.model.User;
+import com.moon.blog.repository.BoardRepository;
 import com.moon.blog.repository.UserRepository;
+import com.moon.blog.service.BoardService;
 
 // html파일이 아니라 data를 리턴해주는 controller = restController
 @RestController
@@ -28,6 +32,9 @@ public class DummyControllerTest {
 	
 	@Autowired // 의존성 주입(DI)
 	private UserRepository userRepository;
+	
+	@Autowired
+	private BoardRepository boardRepository;
 	
 	// save 함수는 id를 전달하지 않으면 insert를 해주고
 	// save 함수는 id를 전달하면 해당 id에 대한 데이터가 있으면 update를 해주고
@@ -81,7 +88,13 @@ public class DummyControllerTest {
 		return users;
 	}
 	
-	
+	// 한 페이지당 2건에 데이터를 리턴받아 볼 예정
+	@GetMapping("/dummy/page")
+	public List<Board> BoardPageList(@PageableDefault(size=10, sort="id", direction = Sort.Direction.DESC) Pageable pageable) { 
+		Page<Board> pagingBoard = boardRepository.findAll(pageable);
+		List<Board> boards = pagingBoard.getContent();
+		return boards; // viewResolver 작동!! 
+	}
 	
 	// {id} 주소로 파라미터를 전달 받을 수 있음.
 	// http://localhost:8000/blog/dummy/user/3
