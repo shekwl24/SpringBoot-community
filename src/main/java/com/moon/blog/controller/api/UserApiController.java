@@ -11,9 +11,12 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.moon.blog.auth.PrincipalDetail;
@@ -47,6 +50,12 @@ public class UserApiController {
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1); // 자바오브젝트를 JSON으로 변환해서 리턴(Jackson)
+	}
+	
+	@PostMapping("/auth/api/user/{username}")
+	public ResponseDto<Integer> checkUsername(@PathVariable String username) {
+		if(userService.이름중복검사(username)) return new ResponseDto<Integer>(HttpStatus.INTERNAL_SERVER_ERROR.value(), 1);
+		else return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}
 }
 

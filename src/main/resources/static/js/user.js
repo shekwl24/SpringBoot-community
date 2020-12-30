@@ -15,6 +15,9 @@ let index = {
 			password: $("#password").val(),
 			email: $("#email").val()
 		};
+		
+		if(data.password === "") data.password = null;
+		if(data.email === "") data.email = null;
 
 		// ajax 호출 시 default가 비동기 호출
 		// ajax 통신을 이용해서 3개의 데이터를 json으로 변경하여 insert 요청!!

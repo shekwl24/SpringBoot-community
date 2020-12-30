@@ -48,4 +48,9 @@ public class UserService {
 		// 회원수정 함수 종료시 = 서비스 종료 = 트랜잭션 종료 = commit이 자동으로 된다.
 		// 영속화된 persistance 객체의 변화가 감지되면 더티체킹이 되어 update문을 날려준다.
 	}
+	
+	@Transactional
+	public boolean 이름중복검사(String username) {
+		return userRepository.findByUsername(username).isPresent();
+	}
 }
