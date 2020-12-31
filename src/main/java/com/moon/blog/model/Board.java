@@ -55,8 +55,6 @@ public class Board {
 	@OrderBy("id desc")
 	private List<Reply> replys;
 	
-	private int replysCount; // 댓글 수
-	
 	@CreationTimestamp
 	private Timestamp createDate;
 }
