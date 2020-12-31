@@ -91,7 +91,6 @@ public class BoardService {
 					return new IllegalArgumentException("글 찾기 실패 : 아이디를 찾을 수 없습니다.");
 				}); // 영속화 완료
 		if(board.getReplysCount() > 0) board.setReplysCount(board.getReplysCount() - 1);
-		System.out.println("이거야이거" + board.getReplysCount());
 	}
 	
 }

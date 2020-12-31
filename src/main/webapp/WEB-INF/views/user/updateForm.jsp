@@ -22,6 +22,7 @@
 		
 	</form>
 	<button id="btn-update" class="btn btn-primary">회원수정완료</button>
+	<button id="btn-withdraw" class="btn btn-danger">회원 탈퇴</button>
 </div>
 
 <script src="/js/user.js"></script>

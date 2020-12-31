@@ -53,4 +53,9 @@ public class UserService {
 	public boolean 이름중복검사(String username) {
 		return userRepository.findByUsername(username).isPresent();
 	}
+	
+	@Transactional
+	public void 회원탈퇴(int id) {
+		userRepository.deleteById(id);
+	}
 }
