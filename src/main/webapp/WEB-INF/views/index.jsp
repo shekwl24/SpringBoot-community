@@ -2,7 +2,10 @@
 <%@ include file="layout/header.jsp"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:useBean id="now" class="java.util.Date" />
 
+<fmt:formatDate var="today" value="${now}" pattern="yyyy-MM-dd" />
 <fmt:parseNumber var ="tmp" integerOnly="true" value ="${boards.number / 10}"/>
 <fmt:parseNumber var ="first_page" integerOnly="true" value ="${tmp * 10}"/>
 
@@ -28,7 +31,15 @@
 					</a>
 				</td>
 				<td align="center">${board.user.username}</td>
-				<td align="center">${fn:substring(board.createDate,0,10)}</td>
+				<c:choose>
+					<c:when test="${today == fn:substring(board.createDate,0,10)}">
+						<td align="center">${fn:substring(board.createDate,11,16)}</td>
+					</c:when>
+					<c:otherwise>
+						<td align="center">${fn:substring(board.createDate,0,10)}</td>
+					</c:otherwise>
+				</c:choose>
+				
 				<td align="center">${board.count}</td>
 			</tr>
 		</c:forEach>
