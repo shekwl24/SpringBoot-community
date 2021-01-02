@@ -67,19 +67,21 @@ let index = {
 	},
 	
 	withdraw: function() {
-		let id = $("#id").val();
-		$.ajax({
-			type: "DELETE",
-			url: "/api/user/" + id,
-			dataType: "json" // 요청을 서버로해서 응답이 왔을 때 기본적으로 모든 것이 문자열 (생긴게 json이라면) => javascript 오브젝트로 변경
-		}).done(function(resp) {
-			alert(resp.data);
-			if(resp.status === 200) {
-				location.href = "/logout";
-			} 
-		}).fail(function(error) {
-			alert(JSON.stringify(error));
-		}); // ajax 통신을 이용해서 3개의 데이터를 json으로 변경하여 insert요청
+		if(confirm("정말로 회원탈퇴를 진행하시겠습니까?")) {
+			let id = $("#id").val();
+			$.ajax({
+				type: "DELETE",
+				url: "/api/user/" + id,
+				dataType: "json" // 요청을 서버로해서 응답이 왔을 때 기본적으로 모든 것이 문자열 (생긴게 json이라면) => javascript 오브젝트로 변경
+			}).done(function(resp) {
+				alert(resp.data);
+				if(resp.status === 200) {
+					location.href = "/logout";
+				} 
+			}).fail(function(error) {
+				alert(JSON.stringify(error));
+			}); // ajax 통신을 이용해서 3개의 데이터를 json으로 변경하여 insert요청
+		} 
 	},
 }
 
