@@ -30,6 +30,7 @@ public class Reply {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // 프로젝트에서 연결된 DB의 넘버링 전략을 따라간다.
 	private int id; // 시퀀스 , auto_increment
 	
+	@Column(nullable = false, length = 300)
 	private String content;
 	
 	@ManyToOne // 하나의 게시글에 여러 댓글

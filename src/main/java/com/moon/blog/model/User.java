@@ -14,10 +14,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -39,12 +42,17 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // 프로젝트에서 연결된 DB의 넘버링 전략을 따라간다.
 	private int id; // 시퀀스 , auto_increment
 	
-	@Column(nullable = false, length = 30, unique = true)
+	@Length(min = 2, message = "이름 최소 길이는 2자입니다.")
+	@Length(max = 15, message = "이름 최대 길이는 15자입니다.")
+	@Pattern(regexp = "^[가-힣0-9a-zA-Z]*$", message = "아이디는 공백없는 영문, 한글 숫자로 구성된 2~15자로 구성")
+	@Column(nullable = false, length = 15, unique = true)
 	private String username; // 아이디
 	
+	@Length(min = 4, message = "비밀번호 최소 길이는 4자입니다.")
 	@Column(nullable = false, length = 100) // 123456 =>해쉬 (비밀번호 암호화)
 	private String password;
 	
+	@Email
 	@Column(nullable = false, length = 50)
 	private String email;
 	
