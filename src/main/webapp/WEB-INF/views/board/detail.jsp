@@ -8,7 +8,7 @@
 		<a href="/board/${board.id}/updateForm" class="btn btn-warning">수정</a>
 		<button id="btn-delete" class="btn btn-danger">삭제</button>
 	</c:if>
-	<br /><br /><br />
+	<br /><br />
 	<div>
 		<h3>${board.title}</h3>
 		<span style="display:none" id="id">${board.id}</span>
@@ -45,10 +45,9 @@
 				<li id="reply-${reply.id}" class="list-group-item d-flex justify-content-between">
 					<div>${reply.content}</div>
 					<div class="d-flex">
-						<div class="font-italic">작성자 : ${reply.user.username} &nbsp;</div>
+						<div>작성자 : ${reply.user.username} &nbsp;</div>
 							<c:if test= "${reply.user.id == principal.user.id}">
 								<button onClick="index.replyDelete(${board.id}, ${reply.id})" class="badge">삭제</button>
-								<button class="badge">수정</button>
 							</c:if>
 					</div>
 				</li>					

@@ -6,17 +6,17 @@
 	<form>
 		<input type="hidden" id="id" value="${principal.user.id}"/>
 		<div class="form-group">
-			<label for="username">아이디</label>
-			<input type="text" value="${principal.user.username}"class="form-control" placeholder="Enter ID" id="username" readonly>
+			<label for="username">Username</label>
+			<input type="text" value="${principal.user.username}"class="form-control" placeholder="Enter Username" id="username" readonly>
 		</div>
 		
 		<div class="form-group">
-			<label for="password">비밀번호 변경</label> 
-			<input type="password" class="form-control" placeholder="Enter password" id="password">
+			<label for="password">Change Password</label> 
+			<input type="password" class="form-control" placeholder="Enter Password" id="password">
 		</div>
 		
 		<div class="form-group">
-			<label for="email">이메일 변경</label> 
+			<label for="email">Change Email</label> 
 			<input type="email" value="${principal.user.email}"class="form-control" placeholder="Enter email" id="email">
 		</div>
 		
