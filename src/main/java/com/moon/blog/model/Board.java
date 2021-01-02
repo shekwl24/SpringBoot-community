@@ -16,9 +16,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -38,10 +41,13 @@ public class Board {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // auto_increment
 	private int id;
 	
-	@Column(nullable = false, length = 100)
+	@Length(min = 2, message = "제목을 최소 2자 이상 입력하시오.")
+	@Length(max = 30, message = "제목 최대 길이는 30자입니다.")
 	private String title;
 	
 	@Lob // 대용량 데이터
+	@NotBlank(message = "내용을 입력하시오.")
+	@Length(max = 65536, message = "내용 최대 길이는 65536자입니다.")
 	private String content; // 섬머노트 라이브러리 <html> 태그가 섞여서 디자인 됨.
 	
 	private int count; // 조회수

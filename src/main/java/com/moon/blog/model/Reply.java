@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.validator.constraints.Length;
 
 import com.moon.blog.dto.ReplySaveRequestDto;
 
@@ -27,7 +30,6 @@ public class Reply {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // 프로젝트에서 연결된 DB의 넘버링 전략을 따라간다.
 	private int id; // 시퀀스 , auto_increment
 	
-	@Column(nullable = false, length = 200)
 	private String content;
 	
 	@ManyToOne // 하나의 게시글에 여러 댓글

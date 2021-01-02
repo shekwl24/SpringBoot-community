@@ -36,13 +36,13 @@ public class UserApiController {
 	private AuthenticationManager authenticationManager;
 	
 	@PostMapping("/auth/joinProc")
-	public ResponseDto<Integer> save(@RequestBody User user) { // username, password, email
+	public ResponseDto save(@RequestBody User user) { // username, password, email
 		userService.회원가입(user);
-		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1); // 자바오브젝트를 JSON으로 변환해서 리턴(Jackson)
+		return new ResponseDto(HttpStatus.OK.value(), "회원가입이 성공하였습니다."); // 자바오브젝트를 JSON으로 변환해서 리턴(Jackson)
 	}
 	
 	@PutMapping("/user")
-	public ResponseDto<Integer> update(@RequestBody User user) { // key=value, x-www-form-urlencoded
+	public ResponseDto update(@RequestBody User user) { // key=value, x-www-form-urlencoded
 		userService.회원수정(user);
 		// 여기서는 트랜잭션이 종료되기 때문에 DB에 값은 변경이 됐음
 		// 하지만 세션값은 변경되지 않은 상태이기 때문에 직접 세션값을 변경해야함
@@ -50,19 +50,19 @@ public class UserApiController {
 		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		
-		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1); // 자바오브젝트를 JSON으로 변환해서 리턴(Jackson)
+		return new ResponseDto(HttpStatus.OK.value(), "회원수정이 완료되었습니다."); // 자바오브젝트를 JSON으로 변환해서 리턴(Jackson)
 	}
 	
 	@PostMapping("/auth/api/user/{username}")
-	public ResponseDto<Integer> checkUsername(@PathVariable String username) {
-		if(userService.이름중복검사(username)) return new ResponseDto<Integer>(HttpStatus.INTERNAL_SERVER_ERROR.value(), 1);
-		else return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+	public ResponseDto checkUsername(@PathVariable String username) {
+		if(userService.이름중복검사(username)) return new ResponseDto(HttpStatus.INTERNAL_SERVER_ERROR.value(), "이름이 중복되었습니다.");
+		else return new ResponseDto(HttpStatus.OK.value(), "사용가능한 이름입니다.");
 	}
 	
 	@DeleteMapping("/api/user/{id}")
-	public ResponseDto<Integer> deleteById(@PathVariable int id) { 
+	public ResponseDto deleteById(@PathVariable int id) { 
 		userService.회원탈퇴(id);
-		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1); // 자바오브젝트를 JSON으로 변환해서 리턴(Jackson)
+		return new ResponseDto(HttpStatus.OK.value(), "회원탈퇴가 완료되었습니다."); // 자바오브젝트를 JSON으로 변환해서 리턴(Jackson)
 	}
 }
 
