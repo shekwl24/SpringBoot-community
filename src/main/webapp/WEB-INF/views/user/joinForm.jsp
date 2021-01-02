@@ -5,17 +5,17 @@
 <div class="container">
 	<form>
 		<div class="form-group">
-			<label for="username">Username</label> 
-			<input type="text" class="form-control" placeholder="Enter username" id="username" >
+			<label for="username">아이디</label> 
+			<input type="text" class="form-control" placeholder="Enter ID" id="username" >
 		</div>
-		<p id="usernameMsg" style="color:#ff0000; display:none">사용할 수 없는 이름입니다.</p>
+		<p id="usernameMsg" style="color:#ff0000; display:none">이미 사용중인 아이디입니다.</p>
 		<div class="form-group">
-			<label for="password">Password</label> 
+			<label for="password">패스워드</label> 
 			<input type="password" class="form-control" placeholder="Enter password" id="password">
 		</div>
 		
 		<div class="form-group">
-			<label for="email">Email</label> 
+			<label for="email">이메일</label> 
 			<input type="email" class="form-control" placeholder="Enter email" id="email">
 		</div>
 	</form>

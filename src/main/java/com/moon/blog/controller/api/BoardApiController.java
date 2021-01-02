@@ -33,19 +33,19 @@ public class BoardApiController {
 	@PostMapping("/api/board")
 	public ResponseDto save(@RequestBody @Valid Board board, @AuthenticationPrincipal PrincipalDetail principal, BindingResult bindingResult) { 
 		boardService.글쓰기(board, principal.getUser());
-		return new ResponseDto(HttpStatus.OK.value(), "글 쓰기가 완료되었습니다.");
+		return new ResponseDto(HttpStatus.OK.value(), "글쓰기가 완료되었습니다.");
 	}
 	
 	@DeleteMapping("/api/board/{id}")
 	public ResponseDto deleteById(@PathVariable int id) {
 		boardService.글삭제하기(id);
-		return new ResponseDto(HttpStatus.OK.value(), "글 삭제가 완료되었습니다.");
+		return new ResponseDto(HttpStatus.OK.value(), "글삭제가 완료되었습니다.");
 	}
 	
 	@PutMapping("/api/board/{id}")
 	public ResponseDto update(@PathVariable int id, @RequestBody @Valid Board board) {
 		boardService.글수정하기(id, board);
-		return new ResponseDto(HttpStatus.OK.value(), "글 수정이 완료되었습니다.");
+		return new ResponseDto(HttpStatus.OK.value(), "글수정이 완료되었습니다.");
 	}
 	
 	// 데이터 받을 때 컨트롤러에서 dto를 만들어서 받는게 좋다.
@@ -53,13 +53,13 @@ public class BoardApiController {
 	@PostMapping("/api/board/{boardId}/reply")
 	public ResponseDto replySave(@RequestBody @Valid ReplySaveRequestDto replySaveRequestDto) {
 		boardService.댓글쓰기(replySaveRequestDto);
-		return new ResponseDto(HttpStatus.OK.value(), "댓글 작성이 완료되었습니다.");
+		return new ResponseDto(HttpStatus.OK.value(), "댓글작성이 완료되었습니다.");
 	}
 	
 	@DeleteMapping("/api/board/{boardId}/reply/{replyId}")
 	public ResponseDto replyDelete(@PathVariable int replyId, @PathVariable int boardId) {
 		boardService.댓글삭제(replyId, boardId);
-		return new ResponseDto(HttpStatus.OK.value(), "댓글 삭제가 완료되었습니다.");
+		return new ResponseDto(HttpStatus.OK.value(), "댓글삭제가 완료되었습니다.");
 	}
 }
 

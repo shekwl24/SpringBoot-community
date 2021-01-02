@@ -42,8 +42,8 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // 프로젝트에서 연결된 DB의 넘버링 전략을 따라간다.
 	private int id; // 시퀀스 , auto_increment
 	
-	@Length(min = 2, message = "이름 최소 길이는 2자입니다.")
-	@Length(max = 15, message = "이름 최대 길이는 15자입니다.")
+	@Length(min = 2, message = "아이디 최소 길이는 2자입니다.")
+	@Length(max = 15, message = "아이디 최대 길이는 15자입니다.")
 	@Pattern(regexp = "^[가-힣0-9a-zA-Z]*$", message = "아이디는 공백없는 영문, 한글 숫자로 구성된 2~15자로 구성")
 	@Column(nullable = false, length = 15, unique = true)
 	private String username; // 아이디
