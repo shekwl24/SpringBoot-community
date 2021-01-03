@@ -5,7 +5,7 @@
 	<p>
 	<br />
             Contact Email : <a href="mailto:shekwl24@gmail.com">shekwl24@gmail.com</a> <br />
-            OpenSource : <a href="https://github.com/shekwl24/SpringBoot-blog">github.com/shekwl24/SpringBoot-blog</a>
+            OpenSource : <a href="https://github.com/shekwl24/SpringBoot-community">github.com/shekwl24/SpringBoot-community</a>
      </p>
 </div>
 </body>
