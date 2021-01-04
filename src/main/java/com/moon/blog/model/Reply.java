@@ -9,12 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.validator.constraints.Length;
-
-import com.moon.blog.dto.ReplySaveRequestDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -44,10 +40,4 @@ public class Reply {
 	
 	@CreationTimestamp
 	private Timestamp createDate;
-
-	@Override
-	public String toString() {
-		return "Reply [id=" + id + ", content=" + content + ", board=" + board + ", user=" + user + ", createDate="
-				+ createDate + "]";
-	}
 }
