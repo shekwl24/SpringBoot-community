@@ -61,7 +61,7 @@ public class User {
 	@CreationTimestamp // 시간이 자동 입력
 	private Timestamp createDate;
 	
-	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE) // mappedBy 연관관계의 주인이 아니다. (난 FK가 아니다) DB에 컬럼을 만들지 말라
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE) // mappedBy 연관관계의 주인이 아니다. (난 FK가 아니다) DB에 컬럼을 만들지 말라
 	@JsonIgnoreProperties({"user"})
 	private List<Board> boards;
 	
