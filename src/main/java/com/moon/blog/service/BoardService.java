@@ -71,7 +71,7 @@ public class BoardService {
 	}
 	
 	@Transactional
-	public void 댓글삭제(int replyId,int BoardId) {
+	public void 댓글삭제(int replyId) {
 		replyRepository.deleteById(replyId);
 	}
 }

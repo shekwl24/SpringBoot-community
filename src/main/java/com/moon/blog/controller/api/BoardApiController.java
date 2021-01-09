@@ -52,8 +52,8 @@ public class BoardApiController {
 	}
 	
 	@DeleteMapping("/api/board/{boardId}/reply/{replyId}")
-	public ResponseDto replyDelete(@PathVariable int replyId, @PathVariable int boardId) {
-		boardService.댓글삭제(replyId, boardId);
+	public ResponseDto replyDelete(@PathVariable int replyId) {
+		boardService.댓글삭제(replyId);
 		return new ResponseDto(HttpStatus.OK.value(), "댓글삭제가 완료되었습니다.");
 	}
 }
