@@ -5,7 +5,6 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,11 +17,7 @@ import com.moon.blog.auth.PrincipalDetail;
 import com.moon.blog.dto.ReplySaveRequestDto;
 import com.moon.blog.dto.ResponseDto;
 import com.moon.blog.model.Board;
-import com.moon.blog.model.Reply;
-import com.moon.blog.model.RoleType;
-import com.moon.blog.model.User;
 import com.moon.blog.service.BoardService;
-import com.moon.blog.service.UserService;
 
 @RestController
 public class BoardApiController {
@@ -31,7 +26,7 @@ public class BoardApiController {
 	private BoardService boardService;
 	
 	@PostMapping("/api/board")
-	public ResponseDto save(@RequestBody @Valid Board board, @AuthenticationPrincipal PrincipalDetail principal, BindingResult bindingResult) { 
+	public ResponseDto save(@RequestBody @Valid Board board, @AuthenticationPrincipal PrincipalDetail principal) { 
 		boardService.글쓰기(board, principal.getUser());
 		return new ResponseDto(HttpStatus.OK.value(), "글쓰기가 완료되었습니다.");
 	}

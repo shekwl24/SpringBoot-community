@@ -12,7 +12,6 @@ let index = {
 	},
 
 	save: function() {
-		//alert("user의 save함수 호출됨");
 		let data = {
 			username: $("#username").val(),
 			password: $("#password").val(),
@@ -42,7 +41,6 @@ let index = {
 	},
 
 	update: function() {
-		//alert("user의 save함수 호출됨");
 		let data = {
 			id: $("#id").val(),	
 			username: $("#username").val(),	

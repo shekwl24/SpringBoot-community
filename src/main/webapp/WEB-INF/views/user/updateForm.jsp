@@ -18,9 +18,9 @@
 		<div class="form-group">
 			<label for="email">Change Email</label> 
 			<input type="email" value="${principal.user.email}"class="form-control" placeholder="Enter email" id="email">
-		</div>
-		
+		</div>	
 	</form>
+	
 	<button id="btn-update" class="btn btn-primary">회원수정완료</button>
 	<button id="btn-withdraw" class="btn btn-danger">회원 탈퇴</button>
 </div>

@@ -1,19 +1,14 @@
 package com.moon.blog.service;
 
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.moon.blog.dto.ReplySaveRequestDto;
 import com.moon.blog.model.Board;
-import com.moon.blog.model.Reply;
-import com.moon.blog.model.RoleType;
 import com.moon.blog.model.User;
 import com.moon.blog.repository.BoardRepository;
 import com.moon.blog.repository.ReplyRepository;
