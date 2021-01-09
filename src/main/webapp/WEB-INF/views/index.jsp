@@ -23,7 +23,7 @@
 		<tbody>
 		<c:forEach var="board" items="${boards.content}">
 			<tr>
-				<td align="center">${board.id}</td>
+				<td align="center">${board.id / 10}</td>
 				<td width=650px style="table-layout: fixed">
 					<a style="color: #000000" href="/board/${board.id}">${board.title} </a>
 					<a href="/board/${board.id}">
