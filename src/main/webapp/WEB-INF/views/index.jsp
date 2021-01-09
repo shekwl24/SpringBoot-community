@@ -5,6 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:useBean id="now" class="java.util.Date" />
 
+<fmt:parseNumber var="board_id" integerOnly="true" value ="${board.id / 10}"/>
 <fmt:formatDate var="today" value="${now}" pattern="yyyy-MM-dd" />
 <fmt:parseNumber var ="tmp" integerOnly="true" value ="${boards.number / 10}"/>
 <fmt:parseNumber var ="first_page" integerOnly="true" value ="${tmp * 10}"/>
@@ -23,7 +24,7 @@
 		<tbody>
 		<c:forEach var="board" items="${boards.content}">
 			<tr>
-				<td align="center">${board.id / 10}</td>
+				<td align="center">${board_id}</td>
 				<td width=650px style="table-layout: fixed">
 					<a style="color: #000000" href="/board/${board.id}">${board.title} </a>
 					<a href="/board/${board.id}">
