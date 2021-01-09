@@ -67,20 +67,11 @@ public class BoardService {
 	
 	@Transactional
 	public void 댓글쓰기(ReplySaveRequestDto replySaveRequestDto) {
-		int result = replyRepository.mSave(replySaveRequestDto.getUserId(), replySaveRequestDto.getBoardId(), replySaveRequestDto.getContent());
-		Board board = boardRepository.findById(replySaveRequestDto.getBoardId())
-				.orElseThrow(()-> {
-					return new IllegalArgumentException("글 찾기 실패 : 아이디를 찾을 수 없습니다.");
-				}); // 영속화 완료
+		replyRepository.mSave(replySaveRequestDto.getUserId(), replySaveRequestDto.getBoardId(), replySaveRequestDto.getContent());
 	}
 	
 	@Transactional
 	public void 댓글삭제(int replyId,int BoardId) {
 		replyRepository.deleteById(replyId);
-		Board board = boardRepository.findById(BoardId)
-				.orElseThrow(()-> {
-					return new IllegalArgumentException("글 찾기 실패 : 아이디를 찾을 수 없습니다.");
-				}); // 영속화 완료
 	}
-	
 }
