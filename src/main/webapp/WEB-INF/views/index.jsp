@@ -22,7 +22,7 @@
 		</thead>
 		<tbody>
 		<c:forEach var="board" items="${boards.content}">
-			<fmt:parseNumber var="board_id" integerOnly="true" value ="${board.id / 10}"/>
+			<fmt:parseNumber var="board_id" integerOnly="true" value ="${(board.id / 10) + 1}"/>
 			<tr>
 				<td align="center">${board_id}</td>
 				<td width=650px style="table-layout: fixed">
