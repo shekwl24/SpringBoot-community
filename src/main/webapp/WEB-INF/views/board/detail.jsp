@@ -3,12 +3,15 @@
 <%@ include file="../layout/header.jsp"%>
 
 <div class="container">
+	<%-- 버튼 --%>
 	<button class="btn btn-secondary" onclick="history.back()">돌아가기</button>
 	<c:if test= "${board.user.id == principal.user.id}">
 		<a href="/board/${board.id}/updateForm" class="btn btn-warning">수정</a>
 		<button id="btn-delete" class="btn btn-danger">삭제</button>
 	</c:if>
 	<br /><br />
+	
+	<%-- 글 정보 --%>
 	<div>
 		<h3>${board.title}</h3>
 		<span style="display:none" id="id">${board.id}</span>
@@ -25,6 +28,7 @@
 	</div>
 	<hr />
 	
+	<%-- 댓글 등록 --%>
 	<div class="card">
 		<form>
 			<input type="hidden" id="userId" value="${principal.user.id}"/>
@@ -38,6 +42,8 @@
 		</form>
 	</div>
 	<br />
+	
+	<%-- 댓글 목록 --%>
 	<div class="card">
 		<div class="card-header">댓글 리스트</div>
 		<ul id="reply-box" class="list-group">
