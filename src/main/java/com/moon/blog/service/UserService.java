@@ -1,6 +1,5 @@
 package com.moon.blog.service;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -45,7 +44,7 @@ public class UserService {
 		// 영속화된 persistance 객체의 변화가 감지되면 더티체킹이 되어 update문을 날려준다.
 	}
 	
-	@Transactional
+	@Transactional(readOnly = true)
 	public boolean 이름중복검사(String username) {
 		return userRepository.findByUsername(username).isPresent();
 	}
