@@ -4,7 +4,6 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 
-<!-- 로그인 된 유저의 정보가 principal에 담김 -->
 <sec:authorize access="isAuthenticated()">
 	<sec:authentication property="principal" var="principal"/>
 </sec:authorize>
@@ -32,15 +31,12 @@
 		</button>
 		<div class="collapse navbar-collapse" id="collapsibleNavbar">
 			<c:choose>
-				<!-- 로그인 상태가 아닐 때 -->
 				<c:when test="${empty principal}">
 					<ul class="navbar-nav">
 						<li class="nav-item"><a class="nav-link" href="/auth/loginForm">로그인</a></li>
 						<li class="nav-item"><a class="nav-link" href="/auth/joinForm">회원가입</a></li>
 					</ul>
 				</c:when>
-				
-				<!-- 로그인 상태일 시 -->
 				<c:otherwise>
 					<ul class="navbar-nav">
 						<li class="nav-item"><a class="nav-link" href="/user/updateForm">회원정보</a></li>

@@ -57,3 +57,8 @@ public class BoardApiController {
 		return new ResponseDto(HttpStatus.OK.value(), "댓글삭제가 완료되었습니다.");
 	}
 }
+
+
+
+
+

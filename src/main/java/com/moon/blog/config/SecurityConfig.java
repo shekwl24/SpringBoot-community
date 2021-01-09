@@ -51,10 +51,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				.anyRequest() // /auth/ 이외 모든 요청은
 				.authenticated() // 인가가 되야한다.
 			.and()
-				.formLogin() // formLogin() 진행
-				.loginPage("/auth/loginForm") // 우리가 만든 Custom Login Page 경로
+				.formLogin()
+				.loginPage("/auth/loginForm")
 				.loginProcessingUrl("/auth/loginProc") // 스프링 시큐리티가 해당 주소로 로그인을 가로채서 대신 로그인 해준다.
-				.defaultSuccessUrl("/") // 로그인 성공 시 이동 페이지
-				.failureUrl("/auth/loginFormFail"); // 로그인 실패 시 이동 페이지
+				.defaultSuccessUrl("/")
+				.failureUrl("/auth/loginFormFail");
 	}
 }

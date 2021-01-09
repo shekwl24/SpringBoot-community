@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ReplySaveRequestDto {
-	
 	private int userId;
 	
 	private int boardId;

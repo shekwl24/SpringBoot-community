@@ -17,7 +17,6 @@ let index = {
 			password: $("#password").val(),
 			email: $("#email").val()
 		};
-		
 		if($("#isPossibleUsername").val() === "true") {
 			// ajax 호출 시 default가 비동기 호출
 			// ajax 통신을 이용해서 3개의 데이터를 json으로 변경하여 insert 요청!!
@@ -71,7 +70,6 @@ let index = {
 	withdraw: function() {
 		if(confirm("정말로 회원탈퇴를 진행하시겠습니까?")) {
 			let id = $("#id").val();
-			
 			$.ajax({
 				type: "DELETE",
 				url: "/api/user/" + id,

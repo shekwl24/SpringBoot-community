@@ -13,7 +13,7 @@ let index = {
 			this.replySave();
 		});
 	},
-	
+
 	save: function() {
 		let data = {
 			title: $("#title").val(),

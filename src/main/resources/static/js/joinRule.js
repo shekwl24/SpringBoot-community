@@ -4,7 +4,6 @@ let index2 = {
 			let data = {
 				username: $("#username").val()
 			};
-			
 			if(data.username !== "") {
 				$.ajax({
 					type: "POST",

@@ -10,9 +10,7 @@
 				<hr>
 				<p id="usernameMsg" class="text-danger text-center"></p>
 				<form>
-                    <!-- 이름 중복 여부 체크-->
 					<input type="hidden" id="isPossibleUsername" value="false"/>
-					
 					<div class="form-group">
 						<div class="input-group">
 							<div class="input-group-prepend">
